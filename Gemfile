@@ -7,6 +7,12 @@ group :development do
   # An IRB alternative and runtime developer console
   # [pry](http://pry.github.com)
   gem 'pry', '~> 0.9.10'
+  # Using guard to run the tests autmoatically on file change.
+  # Just run `guard` in the root of the folder
+  #
+  # [guard](https://github.com/guard/guard)
+  gem 'guard', '~> 1.5.0'
+
 end
 
 group :test do
@@ -22,4 +28,13 @@ group :test do
 
   # [mocha](http://gofreerange.com/mocha/docs)
   gem 'mocha'
+  gem 'guard-minitest'
+end
+
+# Workaround for Heroku:
+# [More info](http://www.johnplummer.com/rails/heroku-error-conditional-rbfsevent-gem.html)
+group :test, :darwin do
+  # OS X
+  gem 'terminal-notifier-guard'
+  gem 'rb-fsevent', :require => false
 end
