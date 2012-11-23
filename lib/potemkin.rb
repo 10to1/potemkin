@@ -13,7 +13,7 @@ module Potemkin
       yield config
     end
 
-    def run
+    def run(cmd)
       puts "Executing #{cmd}"
       puts system("#{cmd}")
     end

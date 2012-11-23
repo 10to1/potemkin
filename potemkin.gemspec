@@ -15,5 +15,6 @@ Gem::Specification.new do |gem|
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
-  gem.executables << 'potemkin'
+  gem.add_dependency "rugged", "0.17.0.b7"
+
 end
