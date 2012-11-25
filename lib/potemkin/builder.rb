@@ -7,6 +7,12 @@ module Potemkin
       Potemkin.run build_command
     end
 
+    def clean
+      logger.describe "cleaning build"
+      Potemkin.run clean_command
+    end
+
+
     # Returns the command to be executed to build
     # This command should be run in the root of the project dir
     def build_command
