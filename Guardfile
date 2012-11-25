@@ -8,4 +8,5 @@ guard 'minitest' do
   watch(%r|^test/helper\.rb|) { "test" }
   watch(%r|^lib/potemkin\.rb|) { "test" }
 
+  watch(%r|^lib/potemkin/builder/(.*)\.rb|) { |m| "test/builder_#{m[1]}_test.rb" }
 end

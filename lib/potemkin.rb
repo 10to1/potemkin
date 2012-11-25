@@ -2,6 +2,7 @@ require "potemkin/version"
 require "potemkin/version/ios_version"
 require "potemkin/configuration"
 require "potemkin/builder"
+require "potemkin/builder/ios"
 require "potemkin/logger"
 
 module Potemkin
