@@ -27,7 +27,8 @@ group :test do
   gem "minitest-rg", "~> 1.0.0"
 
   # [mocha](http://gofreerange.com/mocha/docs)
-  gem 'mocha'
+  gem 'mocha', '~> 0.13.0'
+
   gem 'guard-minitest'
 end
 
