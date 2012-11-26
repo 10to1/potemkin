@@ -13,6 +13,12 @@ describe Potemkin::IosBuilder do
     @builder.build
   end
 
+  it "should run a clean command" do
+    command = "/usr/bin/xcodebuild -target 'Butane' -configuration 'Release' -project 'Butane/Butane.xcodeproj' clean"
+
+    Potemkin.expects(:run).with(command).once
+    @builder.clean
+  end
 
 
 end

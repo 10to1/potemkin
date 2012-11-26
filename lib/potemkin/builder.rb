@@ -1,10 +1,17 @@
 module Potemkin
   class Builder
 
+    def env_vars
+    end
+
     # Will build the actual APK
     def build
       logger.describe "creating build"
-      Potemkin.run build_command
+      if env_vars
+        with_env_vars(env_vars) { Potemkin.run build_command }
+      else
+        Potemkin.run build_command
+      end
     end
 
     def clean
@@ -12,22 +19,20 @@ module Potemkin
       Potemkin.run clean_command
     end
 
+    # Takes a hash and a block, wrapping the block with the env variables
+    # found in the hash.
+    def with_env_vars(env_vars)
+      old_values = {}
+      env_vars.each do |key,new_value|
+        old_values[key] = ENV[key]
+        ENV[key] = new_value
+      end
 
-    # Returns the command to be executed to build
-    # This command should be run in the root of the project dir
-    def build_command
-      <<-command
-  ANDROID_HOME=#{config.sdk_root} &&
-export ANDROID_HOME &&
-ant -f #{android_project_dir}/build.xml clean &&
-ant -f #{android_project_dir}/build.xml #{config.build_type}
-command
+      yield
 
-    end
-
-    def android_project_dir
-      raise "Please add project dir" unless config.android_project_dir
-      config.android_project_dir
+      env_vars.each_key do |key|
+        ENV[key] = old_values[key]
+      end
     end
 
     # Returns the config, mainly here to mock in tests
