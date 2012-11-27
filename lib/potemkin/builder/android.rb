@@ -2,7 +2,7 @@ module Potemkin
   class AndroidBuilder < Builder
 
     def env_vars
-      "ANDROID_HOME" => config.sdk_root
+      { "ANDROID_HOME" => config.sdk_root }
     end
 
     # Returns the command to be executed to build
