@@ -1,0 +1,6 @@
+#!/bin/sh
+
+hostname
+ruby -v
+bundle install --binstubs --path vendor/gems
+bin/rake
