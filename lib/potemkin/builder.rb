@@ -1,22 +1,20 @@
 module Potemkin
   class Builder
 
+    # No environment variables by default
     def env_vars
+      {}
     end
 
     # Will build the actual APK
     def build
       logger.describe "creating build"
-      if env_vars
-        with_env_vars(env_vars) { Potemkin.run build_command }
-      else
-        Potemkin.run build_command
-      end
+      with_env_vars(env_vars) { Potemkin.run build_command }
     end
 
     def clean
       logger.describe "cleaning build"
-      Potemkin.run clean_command
+      with_env_vars(env_vars) { Potemkin.run clean_command }
     end
 
     # Takes a hash and a block, wrapping the block with the env variables
