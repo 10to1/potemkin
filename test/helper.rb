@@ -14,4 +14,8 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
 require 'potemkin'
 
-Potemkin::Logger.any_instance.stubs(:log)
+class MiniTest::Spec
+  before do
+    Potemkin::Logger.any_instance.stubs(:log)
+  end
+end
