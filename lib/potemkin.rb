@@ -1,4 +1,5 @@
 require "potemkin/version"
+require "potemkin/version/ios_version"
 require "potemkin/configuration"
 require "potemkin/builder"
 require "potemkin/logger"
