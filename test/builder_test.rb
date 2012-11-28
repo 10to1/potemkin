@@ -16,6 +16,14 @@ describe Potemkin::Builder do
     assert_equal "~/her-o", android_home
   end
 
+  it "should clean up the env vars after the block was run" do
+    ENV["hello"] = "test"
+    @builder.with_env_vars("hello" => "world") do
+      # nothing really
+    end
+    assert_equal "test", ENV["hello"]
+  end
+
   it "should run clean commands with environment variables" do
     @builder.expects(:with_env_vars)
     @builder.clean
