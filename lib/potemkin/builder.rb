@@ -26,11 +26,13 @@ module Potemkin
         ENV[key] = new_value
       end
 
-      yield
+      return_value = yield
 
       env_vars.each_key do |key|
         ENV[key] = old_values[key]
       end
+
+      return_value
     end
 
     # Returns the config, mainly here to mock in tests
