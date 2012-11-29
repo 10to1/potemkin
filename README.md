@@ -18,7 +18,16 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Place a configuration file in config/potemkin. This could look something like:
+
+    Potemkin.configure do |config|
+      config.platform = :android
+      config.android_project_dir = "Carsharing"
+    end
+
+Run a build command
+
+    $ potemkin build
 
 ## Contributing
 
