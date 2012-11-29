@@ -6,12 +6,9 @@ describe Potemkin::AndroidBuilder do
     @builder.stubs(:config).returns(Potemkin::Configuration.new(:sdk_root => "/some/path", :android_project_dir => "dir", :build_type => "debug"))
   end
 
-  # TODO: This test fails every other time
   it "should run the build command with the android home set" do
-    proc = Proc.new { ENV["ANDROID_HOME"] }
-    Potemkin.expects(:run).returns(proc.call)
-    home = @builder.build
-    assert_equal "/some/path", home
+    @builder.expects(:with_env_vars).with("ANDROID_HOME" => "/some/path").once
+    @builder.build
   end
 
   it "should run a build command" do
