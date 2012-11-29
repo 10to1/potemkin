@@ -1,9 +1,9 @@
 require "potemkin/version"
-require "potemkin/version/ios_version"
+require "potemkin/ios/version"
 require "potemkin/configuration"
 require "potemkin/builder"
-require "potemkin/builder/ios"
-require "potemkin/builder/android"
+require "potemkin/android/builder"
+require "potemkin/ios/builder"
 require "potemkin/logger"
 
 module Potemkin

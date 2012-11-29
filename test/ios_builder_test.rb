@@ -1,8 +1,8 @@
 require "helper"
-describe Potemkin::IosBuilder do
+describe Potemkin::Ios::Builder do
 
   before do
-    @builder = Potemkin::IosBuilder.new
+    @builder = Potemkin::Ios::Builder.new
     @builder.stubs(:config).returns(Potemkin::Configuration.new(:target => "Butane", :configuration => "Release", "project_path" => "Butane/Butane.xcodeproj"))
     end
 
