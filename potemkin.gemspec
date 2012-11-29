@@ -6,7 +6,7 @@ require 'potemkin/version'
 Gem::Specification.new do |gem|
   gem.name          = "potemkin"
   gem.version       = Potemkin::VERSION
-  gem.authors       = ["Bob Van Landuyt"]
+  gem.authors       = ["Bob Van Landuyt", "Piet Jaspers"]
   gem.email         = ["bob.vanlanduyt@gmail.com"]
   gem.description   = "A gem to automate builds & deploys for Android, iOS and web apps"
   gem.summary       = "A gem to automate builds & deploys for Android, iOS and web apps"
@@ -16,5 +16,5 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
   gem.add_dependency "rugged", "0.17.0.b7"
-
+  gem.add_dependency 'thor', '~> 0.16.0'
 end

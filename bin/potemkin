@@ -1,0 +1,10 @@
+#! /usr/bin/ruby
+require "thor"
+require "potemkin"
+class PotemkinCommand < Thor
+
+end
+
+# load "./config/potemkin"
+
+PotemkinCommand.start
