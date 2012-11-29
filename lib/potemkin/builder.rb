@@ -1,6 +1,10 @@
 module Potemkin
   class Builder
 
+    def self.get_builder
+      Potemkin.platform_namespace.const_get("Builder").new
+    end
+
     # No environment variables by default
     def env_vars
       {}

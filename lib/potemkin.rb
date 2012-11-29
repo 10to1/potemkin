@@ -25,6 +25,10 @@ module Potemkin
       @logger ||= Potemkin::Logger.new
     end
 
+    def platform_namespace
+      @platform_namespace ||= const_get(config.platform.capitalize)
+    end
+
   end
 
 end

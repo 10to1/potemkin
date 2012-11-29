@@ -5,7 +5,7 @@ describe Potemkin::Builder do
     @builder = Potemkin::Builder.new
     @builder.stubs(:clean_command).returns("")
     @builder.stubs(:build_command).returns("")
-    @builder.stubs(:config).returns(Potemkin::Configuration.new(:sdk_root => "/some/path", :android_project_dir => "dir", :build_type => "debug"))
+    @builder.stubs(:config).returns(Potemkin::Configuration.new(:sdk_root => "/some/path", :android_project_dir => "dir", :build_type => "debug", :platform => :android))
   end
 
   it "should be able to wrap a block in env vars" do
@@ -32,6 +32,11 @@ describe Potemkin::Builder do
   it "should run clean commands with environment variables" do
     @builder.expects(:with_env_vars)
     @builder.build
+  end
+
+  it "should get the correct builder for a platform" do
+    Potemkin.stubs(:platform_namespace).returns(Potemkin::Android)
+    assert Potemkin::Builder.get_builder.is_a?(Potemkin::Android::Builder)
   end
 
 
