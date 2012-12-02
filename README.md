@@ -1,5 +1,7 @@
 # Potemkin
 
+[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/10to1/potemkin) [![Build Status](https://secure.travis-ci.org/10to1/potemkin.png?branch=master)](https://travis-ci.org/10to1/potemkin)
+
 TODO: Write a gem description
 
 ## Installation
@@ -36,3 +38,5 @@ Run a build command
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+[![Build Status](https://secure.travis-ci.org/10to1/potemkin.png?branch=master)](https://travis-ci.org/10to1/potemkin)
