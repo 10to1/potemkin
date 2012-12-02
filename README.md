@@ -20,14 +20,9 @@ Or install it yourself as:
 
 ## Usage
 
-Place a configuration file in config/potemkin. This could look something like:
+Run `potemkinize .` in the root folder of your project. This will create a file at `config/potemkin.rb` which contains some example configs for iOS and Android.
 
-    Potemkin.configure do |config|
-      config.platform = :android
-      config.android_project_dir = "Carsharing"
-    end
-
-Run a build command
+After having filled in the necessary config settings, you can run a build command with:
 
     $ potemkin build
 
