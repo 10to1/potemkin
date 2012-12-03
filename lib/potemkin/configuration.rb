@@ -21,7 +21,7 @@ module Potemkin
     #
     # Returns path to the project dir.
     def project_dir
-      android_project_dir || project_path
+      android_project_dir || project_path || Dir.pwd
     end
   end
 
