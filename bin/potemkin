@@ -1,13 +1,33 @@
 #! /usr/bin/ruby
 require "thor"
+# require "thor/group"
 require "potemkin"
+
+def example_for_type(type)
+  {"minor" => "0.X.0",
+    "major" => "X.0.0",
+    "patch" => "0.0.X"}.fetch(type, "Que?")
+end
+
 class PotemkinCommand < Thor
   desc "build", "creates a build"
   def build
      Potemkin::Builder.get_builder.build
   end
+
+  desc "version", "Displays current version"
+  def version
+    puts Potemkin::Ios::Version.discovered.version
+  end
+
+  %w(minor major patch).each do |s|
+    desc "version:bump:#{s}", "Bump the version's #{s} number (#{example_for_type(s)})"
+    define_method "version:bump:#{s}" do
+      Potemkin::Ios::Version.discovered.bump(s)
+    end
+  end
 end
 
-load "config/potemkin.rb"
+# load "config/potemkin.rb"
 
 PotemkinCommand.start

@@ -10,6 +10,14 @@ module Potemkin
         @version = Potemkin::Version.new(semver)
       end
 
+      def bump(type)
+        if %w(major minor patch).include?(type.downcase)
+          send("bump_#{type}")
+        else
+          raise "Don't now how to bump the #{type}amathing"
+        end
+      end
+
       def fetch_version
         `/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" #{@plist_path}`
       end
@@ -29,6 +37,20 @@ module Potemkin
 
       def to_s
         "%s at %s" % [@version, @plist_path]
+      end
+
+      # Takes a dir and find all file matching *-Info.plist
+      #
+      # Returns the first match dir
+      def self.find_plist_in_dir(dir)
+        `find '#{dir}' -name "*-Info.plist"`.split("\n").first
+      end
+
+      # Tries to autodetect the Info.plist file
+      #
+      # Returns a new version instance
+      def self.discovered
+        new(find_plist_in_dir(Potemkin.config.project_dir))
       end
     end
   end
