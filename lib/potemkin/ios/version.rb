@@ -1,7 +1,7 @@
 require "forwardable"
 module Potemkin
   module Ios
-    class Version < Potemkin::Version
+    class Version
       extend ::Forwardable
       def_delegators :@version, :bump_major, :bump_minor, :bump_patch
       def initialize(plist_path)
