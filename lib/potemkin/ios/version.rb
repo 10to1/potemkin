@@ -13,6 +13,7 @@ module Potemkin
       def bump(type)
         if %w(major minor patch).include?(type.downcase)
           send("bump_#{type}")
+          write!
         else
           raise "Don't now how to bump the #{type}amathing"
         end
