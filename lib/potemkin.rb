@@ -5,6 +5,7 @@ require "potemkin/builder"
 require "potemkin/android/builder"
 require "potemkin/ios/builder"
 require "potemkin/logger"
+require "potemkin/git"
 
 module Potemkin
   class << self

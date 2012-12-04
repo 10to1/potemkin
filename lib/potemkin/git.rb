@@ -1,7 +1,8 @@
+require "rugged"
 module Potemkin
   class Git
 
-    def repository
+    def self.repository
       @repository ||= Rugged::Repository.new(".")
     end
 
@@ -10,7 +11,7 @@ module Potemkin
     end
 
     def self.current_branch
-
+      repository.branches.detect {|b| b.target == repository.head.target}.name
     end
 
     def self.changelog
