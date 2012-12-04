@@ -1,11 +1,14 @@
 require "potemkin/version"
 require "potemkin/ios/version"
+require "potemkin/android/version"
 require "potemkin/configuration"
 require "potemkin/builder"
 require "potemkin/android/builder"
 require "potemkin/ios/builder"
 require "potemkin/logger"
 require "potemkin/git"
+require "potemkin/android/manifest"
+
 
 module Potemkin
   class << self
