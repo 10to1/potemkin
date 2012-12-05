@@ -12,15 +12,16 @@ Issues the build command, useful to check if the app still builds (CI builds etc
 
 - `potemkin version:bump:(major|minor|patch)`
 
-A universal interface to make versioning your app a bit more sane. We try to use [semver](http://semver.org/) as the guidelines, and this will make it easier (begone editing plists by hand) to do so.
+A universal interface to make versioning your app a bit more sane. We try to use [semver](http://semver.org/) as the guidelines, and this will make it easier (begone editing plists by hand) to do so. **TODO: Android**
 
 - `potemkin deploy`
 
-Should support different deploy endpoints (Testflight, Dropbox, Hockeyapp,...) but should make it possible to deploy an app with one command.
+Should support different deploy endpoints (Testflight, Dropbox, Hockeyapp,...) but should make it possible to deploy an app with one command. **TODO: iOS/Android**
 
 - `potemkin release`
 
-Much like `bundler`s `rake release` for gem development, this would tag the commit with the current version number and deploy it.
+Much like `bundler`s `rake release` for gem development, this would tag the commit with the current version number and deploy it. **TODO: iOS/Android**
+
 
 ## Installation
 
