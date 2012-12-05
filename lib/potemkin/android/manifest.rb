@@ -20,7 +20,7 @@ module Potemkin
       end
 
       def self.find_manifest_in_dir(dir)
-        `find '#{dir}' -name "AndroidManifest.xml"`.split("\n").firsts
+        `find '#{dir}' -name "AndroidManifest.xml"`.split("\n").first
       end
 
     end
