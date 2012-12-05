@@ -25,8 +25,9 @@ class PotemkinCommand < Thor
       Potemkin::Ios::Version.discovered.bump(s)
     end
   end
+
 end
 
-# load "config/potemkin.rb"
+load "config/potemkin.rb" if File.exists?("config/potemkin.rb")
 
 PotemkinCommand.start
