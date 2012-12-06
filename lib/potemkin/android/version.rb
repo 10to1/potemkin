@@ -1,15 +1,14 @@
+require "forwardable"
 module Potemkin
   module Android
-    class Version < Potemkin::Version
+    class Version
+      extend ::Forwardable
+      def_delegators :@version, :bump_major, :bump_minor, :bump_patch
 
-      def initialize(manifest_file = nil)
-        if manifest_file
-          @manifest = Potemkin::Android::Manifest.new(manifest_file)
-        else
-          @manifest = Potemkin::Android::Manifest.discovered
-        end
+      def initialize(manifest)
+        @manifest = manifest
         @version_code = @manifest.version_code
-        super(@manifest.version_name)
+        @version = Potemkin::Version.new(@manifest.version_name)
       end
 
       def bump(type)
@@ -22,9 +21,10 @@ module Potemkin
         end
       end
 
+      # TODO: Keep the users formating in the manifest
       def write!
         @manifest.version_code = @version_code
-        @manifest.version_name = self
+        @manifest.version_name = @version
         @manifest.save!
       end
 
