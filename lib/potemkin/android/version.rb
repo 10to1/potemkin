@@ -28,6 +28,10 @@ module Potemkin
         @manifest.save!
       end
 
+      def self.discovered
+        new(Potemkin::Android::Manifest.discovered)
+      end
+
     end
   end
 end

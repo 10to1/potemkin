@@ -22,7 +22,7 @@ class PotemkinCommand < Thor
   %w(minor major patch).each do |s|
     desc "version:bump:#{s}", "Bump the version's #{s} number (#{example_for_type(s)})"
     define_method "version:bump:#{s}" do
-      Potemkin::Ios::Version.discovered.bump(s)
+      Potemkin::Version.get_version.bump(s)
     end
   end
 

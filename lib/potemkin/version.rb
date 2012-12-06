@@ -2,6 +2,12 @@ module Potemkin
   VERSION = "0.0.1"
 
   class Version
+    Potemkin
+    def self.get_version
+      #TODO This should check the config first and fall back to discover?
+      Potemkin.platform_namespace.const_get("Version").discovered
+    end
+
     attr_reader :major, :minor, :patch
     def initialize(string)
       @major, @minor, @patch = string.strip.split(".")
