@@ -10,9 +10,12 @@ module Potemkin
 
       def manifest_file
         @manifest_file ||= Nokogiri::XML(File.open(manifest_path))
+        puts @manifest_file.inspect
+        @manifest_file
       end
 
       def version_code
+        puts manifest_file.css("manifest").first["versionCode"].inspect
         manifest_file.css("manifest").first["versionCode"].to_i
       end
 
@@ -21,6 +24,7 @@ module Potemkin
       end
 
       def version_name
+        puts manifest_file.css("manifest").first["versionName"].inspect
         manifest_file.css("manifest").first["versionName"]
       end
 
