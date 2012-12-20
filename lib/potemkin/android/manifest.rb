@@ -4,6 +4,7 @@ module Potemkin
     class Manifest
       attr_accessor :manifest_path
       def initialize(path)
+        puts "#{path}"
         @manifest_path = path
       end
 
