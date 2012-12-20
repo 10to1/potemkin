@@ -2,6 +2,7 @@
 
 require "minitest/autorun"
 require 'mocha/setup'
+require "android_helper"
 
 begin
   # [turn](http://rubygems.org/gems/turn)
