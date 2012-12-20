@@ -1,4 +1,5 @@
 require "helper"
+require "tempfile"
 describe Potemkin::Android::Manifest do
 
   before do
