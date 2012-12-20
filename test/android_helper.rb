@@ -1,9 +1,3 @@
-class MiniTest::Spec
-  before do
-    # stub writeing to the manifest file
-  end
-end
-
 FAKE_ANDROID_PROJECT = "fake_project"
 FAKE_ANDROID_PROJECT_DIR = "#{File.dirname(__FILE__)}/fakes/android/#{FAKE_ANDROID_PROJECT}"
 

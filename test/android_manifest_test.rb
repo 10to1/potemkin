@@ -3,6 +3,7 @@ describe Potemkin::Android::Manifest do
 
   before do
     @manifest = Potemkin::Android::Manifest.new(File.join(FAKE_ANDROID_PROJECT_DIR, "AndroidManifest.xml"))
+    Potemkin::Android::Manifest.any_instance.unstub(:save!)
   end
 
   it "should be able to parse the manifest" do
@@ -27,6 +28,14 @@ describe Potemkin::Android::Manifest do
     assert_equal 2, @manifest.version_code
   end
 
+  it "should be able to write a manifest file" do
+    tempfile = Tempfile.new("potemkin")
+    File.expects(:open).returns(tempfile).at_least(0)
+    tempfile.expects(:write).with(@manifest.manifest_file)
+    tempfile.expects(:close)
+    @manifest.save!
+  end
+
   it "should be able to find a manifest in a directory" do
     assert_equal File.join(FAKE_ANDROID_PROJECT_DIR, "AndroidManifest.xml"), Potemkin::Android::Manifest.find_manifest_in_dir(FAKE_ANDROID_PROJECT_DIR)
   end
@@ -34,6 +43,10 @@ describe Potemkin::Android::Manifest do
   it "should be able to create a manifest by discovering the manifest file" do
     Potemkin::Android::Manifest.expects(:new).with(File.join(FAKE_ANDROID_PROJECT_DIR, "AndroidManifest.xml"))
     Potemkin::Android::Manifest.discovered
+  end
+
+  after do
+    Potemkin::Android::Manifest.any_instance.stubs(:save!)
   end
 
 end

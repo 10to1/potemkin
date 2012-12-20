@@ -18,5 +18,6 @@ require 'potemkin'
 class MiniTest::Spec
   before do
     Potemkin::Logger.any_instance.stubs(:log)
+    Potemkin::Android::Manifest.any_instance.stubs(:save!)
   end
 end
