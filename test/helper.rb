@@ -2,7 +2,6 @@
 
 require "minitest/autorun"
 require 'mocha/setup'
-require "android_helper"
 
 begin
   # [turn](http://rubygems.org/gems/turn)
@@ -21,3 +20,5 @@ class MiniTest::Spec
     Potemkin::Android::Manifest.any_instance.stubs(:save!)
   end
 end
+FAKE_ANDROID_PROJECT = "fake_project"
+FAKE_ANDROID_PROJECT_DIR = "#{File.dirname(__FILE__)}/fakes/android/#{FAKE_ANDROID_PROJECT}"
