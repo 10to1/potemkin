@@ -5,6 +5,8 @@ module Potemkin
       extend ::Forwardable
       def_delegators :@version, :bump_major, :bump_minor, :bump_patch
 
+      attr_accessor :version_code
+
       def initialize(manifest)
         @manifest = manifest
         @version_code = @manifest.version_code
@@ -13,7 +15,7 @@ module Potemkin
 
       def bump(type)
         if %w(major minor patch).include?(type.downcase)
-          @version_code +=1
+          @version_code += 1
           send("bump_#{type}")
           write!
         else
