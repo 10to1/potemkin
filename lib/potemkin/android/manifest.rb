@@ -2,13 +2,13 @@ require "nokogiri"
 module Potemkin
   module Android
     class Manifest
-
-      def initialize(manifest_path)
-        @manifest_path = manifest_path
+      attr_accessor :manifest_path
+      def initialize(path)
+        @manifest_path = path
       end
 
       def manifest_file
-        @manifest_file ||= Nokogiri::XML(File.open(@manifest_path))
+        @manifest_file ||= Nokogiri::XML(File.open(manifest_path))
       end
 
       def version_code
@@ -28,7 +28,7 @@ module Potemkin
       end
 
       def save!
-        file = File.open(@manifest_path, "w")
+        file = File.open(manifest_path, "w")
         file.write(manifest_file)
         file.close
       end
