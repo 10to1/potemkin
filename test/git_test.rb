@@ -4,6 +4,7 @@ describe Potemkin::Git do
 
   before do
     @git  = Potemkin::Git.new(FAKE_GIT_REPO)
+    `cd #{FAKE_GIT_REPO}`
   end
 
   it "should be able to detect the current branch" do
@@ -29,6 +30,10 @@ describe Potemkin::Git do
     checkout_master
     messages = ["Changelog 3", "Changelog 2", "Changelog 1"]
     assert_equal messages, @git.changelog
+  end
+
+  after do
+    checkout_master
   end
 
 end
