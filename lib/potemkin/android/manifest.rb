@@ -17,7 +17,7 @@ module Potemkin
       end
 
       def version_code
-        manifest_node["versionCode"].to_i
+        manifest_node.attribute("versionCode").value.to_i
       end
 
       def version_code=(value)
@@ -25,7 +25,7 @@ module Potemkin
       end
 
       def version_name
-        manifest_node["versionName"]
+        manifest_node.attribute("versionName").value
       end
 
       def version_name=(value)
