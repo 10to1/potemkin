@@ -3,33 +3,33 @@ module Potemkin
   module Android
     class Manifest
       attr_accessor :manifest_path
+
       def initialize(path)
-        puts "#{path}"
         @manifest_path = path
       end
 
       def manifest_file
-        @manifest_file ||= Nokogiri::XML(File.open(manifest_path))
-        puts @manifest_file.inspect
-        @manifest_file
+        @manifest_file ||= Nokogiri::XML(File.read(manifest_path))
+      end
+
+      def manifest_node
+        @manifest_node ||= manifest_file.xpath("manifest", "android" => "http://schemas.android.com/apk/res/android").first
       end
 
       def version_code
-        puts manifest_file.css("manifest").first["versionCode"].inspect
-        manifest_file.css("manifest").first["versionCode"].to_i
+        manifest_node["versionCode"].to_i
       end
 
       def version_code=(value)
-        manifest_file.css("manifest").first["android:versionCode"] = value.to_s
+        manifest_node["android:versionCode"] = value.to_s
       end
 
       def version_name
-        puts manifest_file.css("manifest").first["versionName"].inspect
-        manifest_file.css("manifest").first["versionName"]
+        manifest_node["versionName"]
       end
 
       def version_name=(value)
-        manifest_file.css("manifest").first["android:versionName"] = value.to_s
+        manifest_node["android:versionName"] = value.to_s
       end
 
       def save!
