@@ -3,6 +3,9 @@ require "helper"
 describe Potemkin::Git do
 
   before do
+    unless File.directory?(FAKE_GIT_REPO)
+      `cd #{FAKE_DIR} && tar -xvzf #{FAKE_GIT_TAR}`
+    end
     @git  = Potemkin::Git.new(FAKE_GIT_REPO)
     `cd #{FAKE_GIT_REPO}`
   end
