@@ -2,10 +2,16 @@ module Potemkin
   VERSION = "0.0.1"
 
   class Version
-    Potemkin
+
     def self.get_version
-      #TODO This should check the config first and fall back to discover?
-      Potemkin.platform_namespace.const_get("Version").discovered
+      if config.android_manifest_path
+        manifest = Potemkin::Android::Manifest.new(config.android_manifest_path)
+        Potemkin::Android::Version.new(manifest)
+      elsif config.ios_plist_path
+        Potemkin::Ios::Version.new(config.ios_plist_path)
+      else
+        Potemkin.platform_namespace.const_get("Version").discovered
+      end
     end
 
     attr_reader :major, :minor, :patch
@@ -33,6 +39,10 @@ module Potemkin
 
     def to_s
       [major, minor, patch].compact.join('.')
+    end
+
+    def self.config
+      Potemkin.config
     end
   end
 end

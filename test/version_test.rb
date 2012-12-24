@@ -32,4 +32,28 @@ describe Potemkin::Version do
       assert_equal "0.0.2", @version.to_s
     end
   end
+
+  describe "initialization for platforms" do
+    it "should initialize an ios version with the plist set" do
+      Potemkin::Version.stubs(:config).returns(Potemkin::Configuration.new(:ios_plist_path => "some/path"))
+      Potemkin::Ios::Version.expects(:new).with("some/path").once
+      Potemkin::Version.get_version
+    end
+
+    it "should initialize an android version with the manifest" do
+      Potemkin::Version.stubs(:config).returns(Potemkin::Configuration.new(:android_manifest_path => "some/path"))
+      manifest = Potemkin::Android::Manifest.new("some/path")
+      Potemkin::Android::Manifest.expects(:new).with("some/path").returns(manifest).once
+      Potemkin::Android::Version.expects(:new).with(manifest).once
+      Potemkin::Version.get_version
+    end
+
+
+    it "should get a discovered android version when only the platform is set to android" do
+      Potemkin.stubs(:platform_namespace).returns(Potemkin::Android)
+      Potemkin::Android::Version.expects(:discovered)
+      Potemkin::Version.get_version
+    end
+
+  end
 end
