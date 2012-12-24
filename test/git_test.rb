@@ -22,7 +22,7 @@ describe Potemkin::Git do
   end
 
   it "should find tags for a commit" do
-     assert @git.tag_for_commit(TAGGED_COMMIT)
+    assert @git.tag_for_commit(TAGGED_COMMIT)
   end
 
   it "should create a changelog with all the commits betweet to version tags" do
@@ -40,7 +40,6 @@ end
 def checkout_tagged_commit
   system("cd #{FAKE_GIT_REPO} && git checkout --detach #{TAGGED_COMMIT}")
 end
-
 
 def checkout_initial_commit
   system("cd #{FAKE_GIT_REPO} && git checkout --detach #{INITIAL_COMMIT}")
