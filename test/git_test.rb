@@ -7,7 +7,6 @@ describe Potemkin::Git do
       `cd #{FAKE_DIR} && tar -xvzf #{FAKE_GIT_TAR}`
     end
     @git  = Potemkin::Git.new(FAKE_GIT_REPO)
-    `cd #{FAKE_GIT_REPO}`
   end
 
   it "should be able to detect the current branch" do
