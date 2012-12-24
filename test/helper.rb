@@ -22,3 +22,7 @@ class MiniTest::Spec
 end
 FAKE_ANDROID_PROJECT = "fake_project"
 FAKE_ANDROID_PROJECT_DIR = "#{File.dirname(__FILE__)}/fakes/android/#{FAKE_ANDROID_PROJECT}"
+
+FAKE_GIT_REPO = "#{File.dirname(__FILE__)}/fakes/git_repo"
+INITIAL_COMMIT = "2e761e193c1a6163dbcd56a75ea66612e729abf3"
+TAGGED_COMMIT = "de0738daa127d8183a2c3480f868e663b09c74ec"
