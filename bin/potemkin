@@ -16,7 +16,7 @@ class PotemkinCommand < Thor
 
   desc "version", "Displays current version"
   def version
-    puts Potemkin::Ios::Version.discovered.version
+    puts Potemkin::Version.get_version.version
   end
 
   %w(minor major patch).each do |s|
