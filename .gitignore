@@ -15,5 +15,7 @@ spec/reports
 test/tmp
 test/version_tmp
 tmp
-
+/test/fakes/git_repo/
 /git_repo/
+/Vagrantfile
+/.vagrant
