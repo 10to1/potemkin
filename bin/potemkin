@@ -17,6 +17,8 @@ class PotemkinCommand < Thor
   desc "version", "Displays current version"
   def version
     puts Potemkin::Version.get_version.version
+  rescue => e
+    puts e.message
   end
 
   %w(minor major patch).each do |s|

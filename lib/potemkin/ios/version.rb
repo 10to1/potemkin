@@ -5,9 +5,21 @@ module Potemkin
       extend ::Forwardable
       def_delegators :@version, :bump_major, :bump_minor, :bump_patch
       def initialize(plist_path)
+        raise_error_unless_exists?(plist_path.to_s)
         @plist_path = plist_path
         semver = fetch_version
         @version = Potemkin::Version.new(semver)
+      end
+
+      def raise_error_unless_exists?(plist_path)
+        return if File.exists? plist_path
+
+        raise <<-ERROR
+Could not find a valid plist-file in #{Potemkin.config.project_dir},
+please set it manually in the config file with:
+
+    config.ios_plist_path = "<path/to/Info.plist"
+ERROR
       end
 
       def bump(type)
