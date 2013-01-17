@@ -28,7 +28,6 @@ describe Potemkin::Android::Builder do
     @builder_without_dir.stubs(:config).returns(Potemkin::Configuration.new(:sdk_root => "/some/path", :build_type => "debug"))
     builder_error = @builder_without_dir.build rescue "RESCUED"
     assert_equal "RESCUED", builder_error
-
   end
 
 
