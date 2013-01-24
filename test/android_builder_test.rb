@@ -23,12 +23,10 @@ describe Potemkin::Android::Builder do
     @builder.clean
   end
 
-  it "should fail if the project dir is not set" do
+  it "Should use the current path when it is not set" do
     @builder_without_dir = Potemkin::Android::Builder.new
     @builder_without_dir.stubs(:config).returns(Potemkin::Configuration.new(:sdk_root => "/some/path", :build_type => "debug"))
-    builder_error = @builder_without_dir.build rescue "RESCUED"
-    assert_equal "RESCUED", builder_error
-
+    assert_equal Dir.pwd, @builder_without_dir.project_dir
   end
 
 

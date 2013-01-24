@@ -23,6 +23,14 @@ module Potemkin
     def project_dir
       android_project_dir || project_path || Dir.pwd
     end
+
+
+    # Returns the path to the build configuration relative to project_dir
+    # (Ant build.xml for android)
+    def build_file
+      ant_file || "build.xml"
+    end
+
   end
 
 end

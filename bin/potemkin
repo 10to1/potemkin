@@ -9,9 +9,19 @@ def example_for_type(type)
 end
 
 class PotemkinCommand < Thor
+  desc "clean", "runs the clean command to clean up build direcories"
+  def clean
+    Potemkin::Builder.get_builder.clean
+  end
+
   desc "build", "creates a build"
   def build
     Potemkin::Builder.get_builder.build
+  end
+
+  desc "package", "Creates a distributable build"
+  def package
+    Potemkin::Builder.get_builder.package
   end
 
   desc "version", "Displays current version"

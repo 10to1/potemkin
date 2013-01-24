@@ -8,19 +8,26 @@ module Potemkin
 
       # Returns the command to be executed to build
       # This command should be run in the root of the project dir
-      def build_command
-        "ant -f #{android_project_dir}/build.xml #{config.build_type}"
+      def build_command(build_type = config.build_type)
+        "ant -f #{project_dir}/#{build_file} #{build_type}"
       end
 
       # this will clean out the bin directories within a project
       def clean_command
-        "ant -f #{android_project_dir}/build.xml clean"
+        build_command("clean")
+      end
+
+      def package_command
+        build_command("release")
       end
 
       # The subfolder where the actual app is located
-      def android_project_dir
-        raise "Please add project dir" unless config.android_project_dir
-        config.android_project_dir
+      def project_dir
+        config.project_dir
+      end
+
+      def build_file
+        config.build_file
       end
     end
   end

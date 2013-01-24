@@ -21,6 +21,12 @@ module Potemkin
       with_env_vars(env_vars) { Potemkin.run clean_command }
     end
 
+    def package
+      logger.describe "packaging"
+      with_env_vars(env_vars) { Potemkin.run package_command }
+    end
+
+
     # Takes a hash and a block, wrapping the block with the env variables
     # found in the hash.
     def with_env_vars(env_vars)
