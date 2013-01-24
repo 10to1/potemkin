@@ -3,24 +3,7 @@ describe Potemkin::Android::Builder do
 
   before do
     @builder = Potemkin::Android::Builder.new
-    @builder.stubs(:config).returns(Potemkin::Configuration.new(:sdk_root => "/some/path", :project_path => "dir", :build_type => "debug"))
-  end
-
-  it "should run the build command with the android home set" do
-    @builder.expects(:with_env_vars).with("ANDROID_HOME" => "/some/path").once
-    @builder.build
-  end
-
-  it "should run a build command" do
-    command = "ant -f dir/build.xml debug"
-    Potemkin.expects(:run).with(command).once
-    @builder.build
-  end
-
-  it "should run a clean command" do
-    command = "ant -f dir/build.xml clean"
-    Potemkin.expects(:run).with(command).once
-    @builder.clean
+    @builder.stubs(:config).returns(Potemkin::Configuration.new(:sdk_root => "/some/path", :project_path => "dir", :platform => :android))
   end
 
   it "Should use the current path when it is not set" do
@@ -29,7 +12,33 @@ describe Potemkin::Android::Builder do
     assert_equal Dir.pwd, @builder_without_dir.project_dir
   end
 
+  it "should run the build command with the android home set" do
+    @builder.expects(:with_env_vars).with("ANDROID_HOME" => "/some/path").once
+    @builder.build
+  end
 
+
+
+  describe "building" do
+
+    it "should run a build command" do
+      command = "ant -f dir/build.xml debug"
+      Potemkin.expects(:run).with(command).once
+      @builder.build
+    end
+
+    it "should run a clean command" do
+      command = "ant -f dir/build.xml clean"
+      Potemkin.expects(:run).with(command).once
+      @builder.clean
+    end
+
+  end
+
+  describe "packaging" do
+
+
+  end
 
 
 end

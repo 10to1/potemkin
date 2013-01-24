@@ -1,5 +1,6 @@
 require "helper"
 describe Potemkin::Configuration do
+
   before do
     Potemkin.configure do |c|
       c.platform = :android

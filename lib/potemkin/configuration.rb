@@ -6,10 +6,6 @@ module Potemkin
       super || ENV["ANDROID_SDK_ROOT"] || "/usr/local/Cellar/android-sdk/r21"
     end
 
-    def build_type
-      super || "debug"
-    end
-
     # Works across platforms
     #
     # Returns path to the project dir.
@@ -23,11 +19,12 @@ module Potemkin
       super || "build.xml"
     end
 
+    # The directory where your app is located
     def build_directory
       return super if super
       case  platform
       when :android
-        "#{project_dir}/bin/"
+        "#{project_path}/bin"
       when :ios
         raise "not yet implemented"
       when :ruby_motion
@@ -35,8 +32,31 @@ module Potemkin
       end
     end
 
+    # The platform that we're trying to build against
+    #
+    # This one must be set
     def platform
       super || raise("Please specify your platform")
+    end
+
+    def keystore
+      super || "release.keystore"
+    end
+
+    def key_algorithm
+      super || "MD5withRSA"
+    end
+
+    def digest_algorithm
+      super || "SHA1"
+    end
+
+    def keystore_alias
+      super || raise("Please set the keystore entry to use")
+    end
+
+    def project_name
+      super || File.basename(project_path).downcase
     end
 
   end
