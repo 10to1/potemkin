@@ -23,7 +23,7 @@ module Potemkin
 
       # The subfolder where the actual app is located
       def project_dir
-        config.project_dir
+        config.project_path
       end
 
       def build_file

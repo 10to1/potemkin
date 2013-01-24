@@ -13,7 +13,7 @@ require "potemkin/android/manifest"
 module Potemkin
   class << self
     def config
-      @config ||= Configuration.default
+      @config ||= Configuration.new
     end
 
     def configure

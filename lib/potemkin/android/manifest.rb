@@ -39,7 +39,7 @@ module Potemkin
       end
 
       def self.discovered
-        new(find_manifest_in_dir(Potemkin.config.project_dir))
+        new(find_manifest_in_dir(Potemkin.config.project_path))
       end
 
       def self.find_manifest_in_dir(dir)
