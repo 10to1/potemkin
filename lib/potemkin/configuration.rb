@@ -13,10 +13,10 @@ module Potemkin
       super || Dir.pwd
     end
 
-    # Returns the path to the build configuration relative to project_dir
+    # Returns the path to the build configuration in project_dir
     # (Ant build.xml for android)
     def build_file
-      super || "build.xml"
+      super || "#{project_path}/build.xml"
     end
 
     # The directory where your app is located

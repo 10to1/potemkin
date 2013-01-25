@@ -12,7 +12,8 @@ module Potemkin
       # Returns the command to be executed to build
       # This command should be run in the root of the project dir
       def build_command(build_task = "debug")
-        "ant -f #{project_dir}/#{build_file} #{build_task}"
+        raise "No build file #{build_file} (you can generate one with using `android update`)" unless File.exists?(build_file)
+        "ant -f #{build_file} #{build_task}"
       end
 
       # this will clean out the bin directories within a project
@@ -62,7 +63,7 @@ module Potemkin
       end
 
       # The subfolder where the actual app is located
-      def project_dir
+      def project_path
         config.project_path
       end
 
