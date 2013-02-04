@@ -34,6 +34,11 @@ module Potemkin
         new(Potemkin::Android::Manifest.discovered)
       end
 
+      def version
+        @version
+      end
+
+
     end
   end
 end
