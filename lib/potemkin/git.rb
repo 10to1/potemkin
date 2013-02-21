@@ -3,8 +3,8 @@ module Potemkin
   class Git
 
     attr_accessor :repository_path
-    def initialize(path = self.discover_repo)
-      @repository_path = path
+    def initialize(path = nil)
+      @repository_path = path || discover_repo
     end
 
     def repository
@@ -50,12 +50,12 @@ module Potemkin
       messages
     end
 
-    def self.discover_repo
+    def self.discovered
       current_dir = config.project_path
       while current_dir.length > 1 && !Dir.exists?(File.join(current_dir, ".git"))
         current_dir = current_dir.split(File::SEPARATOR)[0...-1].join(File::SEPARATOR)
       end
-      current_dir if Dir.exists?(File.join(current_dir, ".git"))
+      Dir.exists?(File.join(current_dir, ".git")) ? new(current_dir) : raise("Not a git repository")
     end
 
     def self.config

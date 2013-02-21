@@ -7,6 +7,11 @@ describe Potemkin::Android::Version do
   end
 
   %w(major minor patch).each do |type|
+    it "prints the summary" do
+      @version.expects(:summary)
+      @version.bump(type)
+    end
+
     it "increments the version code when bumping #{type}" do
       code = @version.version_code
       @version.bump(type)

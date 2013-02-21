@@ -46,7 +46,13 @@ describe Potemkin::Git do
 
   it "should be able to discover the repo when it wasn't found in the project_path" do
     Potemkin::Git.expects(:config).returns(OpenStruct.new(project_path: "#{FAKE_GIT_REPO}/subfolder"))
-    assert_equal FAKE_GIT_REPO, Potemkin::Git.discover_repo
+    assert_equal FAKE_GIT_REPO, Potemkin::Git.discovered.repository_path
+  end
+
+  it "should raise an error when no git repository is found" do
+    Potemkin::Git.expects(:config).returns(OpenStruct.new(project_path: "/some/subfolder"))
+    result = Potemkin::Git.discovered.repository_path rescue "error"
+    assert_equal "error", result
   end
 
   after do

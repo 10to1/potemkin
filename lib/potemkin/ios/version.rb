@@ -3,7 +3,7 @@ module Potemkin
   module Ios
     class Version
       extend ::Forwardable
-      def_delegators :@version, :bump_major, :bump_minor, :bump_patch
+      def_delegators :@version, :bump_major, :bump_minor, :bump_patch, :summary
       def initialize(plist_path)
         raise_error_unless_exists?(plist_path.to_s)
         @plist_path = plist_path
@@ -29,6 +29,7 @@ ERROR
         else
           raise "Don't now how to bump the #{type}amathing"
         end
+        Potemkin.logger.log summary
       end
 
       def fetch_version

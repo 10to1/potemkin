@@ -3,7 +3,7 @@ module Potemkin
   module Android
     class Version
       extend ::Forwardable
-      def_delegators :@version, :bump_major, :bump_minor, :bump_patch
+      def_delegators :@version, :bump_major, :bump_minor, :bump_patch, :summary
 
       attr_accessor :version_code
 
@@ -21,6 +21,7 @@ module Potemkin
         else
           raise "Don't now how to bump the #{type}amathing"
         end
+        Potemkin.logger.log summary
       end
 
       # TODO: Keep the users formating in the manifest
@@ -37,7 +38,6 @@ module Potemkin
       def version
         @version
       end
-
 
     end
   end

@@ -56,4 +56,19 @@ describe Potemkin::Version do
     end
 
   end
+
+  it "should be able to print out a changelog with since the previous version" do
+    Potemkin::Git.expects(:discovered).returns(OpenStruct.new({previous_tag: "prev", changelog:["one", "two"]}))
+    version = Potemkin::Version.new("0.0.1")
+    expected_output = <<changelog
+Version was bumped to 0.0.1.
+
+Here's what you've been doing since prev:
+
+one
+two
+
+changelog
+    assert_equal expected_output, version.summary
+  end
 end

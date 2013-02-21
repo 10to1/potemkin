@@ -22,6 +22,19 @@ module Potemkin
       @patch = @patch.to_i || 1
     end
 
+    def summary
+      git = Potemkin::Git.discovered
+      changelog =
+<<changelog
+Version was bumped to #{self}.
+
+Here's what you've been doing since #{git.previous_tag}:
+
+#{git.changelog.join("\n")}
+
+changelog
+    end
+
     def bump_major
       @major += 1
       @minor = 0
