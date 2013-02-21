@@ -25,13 +25,28 @@ describe Potemkin::Git do
   end
 
   it "should find tags for a commit" do
-    assert @git.tag_for_commit(TAGGED_COMMIT)
+    assert @git.tag_for_commit(FIRST_TAGGED_COMMIT)
   end
 
   it "should create a changelog with all the commits betweet to version tags" do
-    checkout_master
+    checkout_last_tagged_commit
     messages = ["Changelog 3", "Changelog 2", "Changelog 1"]
     assert_equal messages, @git.changelog
+  end
+
+  it "should be able to find the previous tag" do
+    checkout_master
+    assert_equal "0.0.2", @git.previous_tag
+  end
+
+  it "should not fail when no previous tag" do
+    checkout_tagged_commit
+    assert_equal "<No previous tag>", @git.previous_tag
+  end
+
+  it "should be able to discover the repo when it wasn't found in the project_path" do
+    Potemkin::Git.expects(:config).returns(OpenStruct.new(project_path: "#{FAKE_GIT_REPO}/subfolder"))
+    assert_equal FAKE_GIT_REPO, Potemkin::Git.discover_repo
   end
 
   after do
@@ -44,8 +59,12 @@ def checkout_master
   system("cd #{FAKE_GIT_REPO} && git checkout master")
 end
 
+def checkout_last_tagged_commit
+  system("cd #{FAKE_GIT_REPO} && git checkout --detach #{LAST_TAGGED_COMMIT}")
+end
+
 def checkout_tagged_commit
-  system("cd #{FAKE_GIT_REPO} && git checkout --detach #{TAGGED_COMMIT}")
+  system("cd #{FAKE_GIT_REPO} && git checkout --detach #{FIRST_TAGGED_COMMIT}")
 end
 
 def checkout_initial_commit
