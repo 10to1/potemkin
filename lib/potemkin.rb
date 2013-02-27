@@ -8,7 +8,8 @@ require "potemkin/ios/builder"
 require "potemkin/logger"
 require "potemkin/git"
 require "potemkin/android/manifest"
-
+require "potemkin/deployer/base"
+require "potemkin/deployer/cloud_app"
 
 module Potemkin
   class << self

@@ -6,18 +6,18 @@ begin
   require 'cloudapp/service'
   require "shijt"
 rescue LoadError => e
-  Potemkin.logger.describe("CloudApp gem not installed.")
-  Potemkin.logger.log("Please run `gem install cloudapp`")
+  # Potemkin.logger.describe("CloudApp gem not installed.")
+  # Potemkin.logger.log("Please run `gem install cloudapp`")
 end
 
 module Potemkin
   module Deployer
-    class CloudApp
+    class CloudApp < Base
 
       attr_accessor :token
 
-      def initialize
-        super
+      def initialize(*args)
+        super(args)
         raise "Please set cloudapp_email and cloudapp_password" unless credentials_present?
         @token = config.token ? config.token : token_from_credentials
       end
