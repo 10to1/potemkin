@@ -3,7 +3,7 @@ module Potemkin
   class Configuration < OpenStruct
 
     def sdk_root
-      super || ENV["ANDROID_SDK_ROOT"] || "/usr/local/Cellar/android-sdk/r21"
+      super || ENV["ANDROID_SDK_ROOT"] || "/usr/local/opt/android-sdk"
     end
 
     # Works across platforms
