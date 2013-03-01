@@ -1,6 +1,8 @@
 # Potemkin
 
 [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/10to1/potemkin) [![Build Status](https://secure.travis-ci.org/10to1/potemkin.png?branch=master)](https://travis-ci.org/10to1/potemkin)
+[![Coverage Status](https://coveralls.io/repos/10to1/potemkin/badge.png?branch=master)](https://coveralls.io/r/10to1/potemkin)
+
 
 `Potemkin` («Потёмкин») is rebelling against the Xcode and Eclipse of the Tsarist regime. It will try to bring the build and deploy commands needed for iOS and Android app back to simple oneliners you can enter in your shell. (Which also makes it very easy for CI builds).
 
@@ -54,3 +56,4 @@ After having filled in the necessary config settings, you can run a build comman
 5. Create new Pull Request
 
 [![Build Status](https://secure.travis-ci.org/10to1/potemkin.png?branch=master)](https://travis-ci.org/10to1/potemkin)
+[![Coverage Status](https://coveralls.io/repos/10to1/potemkin/badge.png?branch=master)](https://coveralls.io/r/10to1/potemkin)
