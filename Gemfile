@@ -30,6 +30,10 @@ group :test do
   gem 'mocha', '~> 0.13.0'
 
   gem 'guard-minitest'
+
+  # A Ruby implementation of the Coveralls API.
+  # [coveralls](http://coveralls.io)
+  gem 'coveralls', '~> 0.6.0'
 end
 
 # Workaround for Heroku:
