@@ -6,8 +6,7 @@ begin
   require 'cloudapp/service'
   require "shijt"
 rescue LoadError => e
-  # Potemkin.logger.describe("CloudApp gem not installed.")
-  # Potemkin.logger.log("Please run `gem install cloudapp`")
+  puts "CloudApp gem not installed. \n Please run `gem install cloudapp`"
 end
 
 module Potemkin
